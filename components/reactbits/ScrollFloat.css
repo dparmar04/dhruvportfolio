@@ -1,0 +1,12 @@
+.scroll-float {
+  margin: 0;
+  line-height: 1.1;
+}
+.scroll-float-text {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+.char {
+  display: inline-block;
+  white-space: pre;
+}

@@ -1,0 +1,52 @@
+.scroll-list-container {
+  position: relative;
+  width: 100%;
+}
+.scroll-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+  max-height: 400px;
+  padding: 4px 0;
+  scrollbar-width: thin;
+}
+.scroll-list.no-scrollbar {
+  scrollbar-width: none;
+}
+.scroll-list.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.item {
+  padding: 10px 14px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+.item:hover, .item.selected {
+  background: rgba(0,0,0,0.04);
+}
+.item-text {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+.top-gradient, .bottom-gradient {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 24px;
+  pointer-events: none;
+}
+.top-gradient {
+  top: 0;
+  background: linear-gradient(to bottom, var(--background), transparent);
+}
+.bottom-gradient {
+  bottom: 0;
+  background: linear-gradient(to top, var(--background), transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .item:hover, .item.selected {
+    background: rgba(255,255,255,0.06);
+  }
+}

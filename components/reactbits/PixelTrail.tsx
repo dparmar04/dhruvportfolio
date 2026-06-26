@@ -1,7 +1,7 @@
 // @ts-nocheck
 "use client";
 
-/* eslint-disable react/no-unknown-property */
+ 
 import { useMemo } from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
 import { shaderMaterial, useTrailTexture } from '@react-three/drei';

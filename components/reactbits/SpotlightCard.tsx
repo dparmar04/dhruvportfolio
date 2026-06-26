@@ -1,7 +1,7 @@
-// @ts-nocheck
 "use client";
 
-import { useRef, MouseEvent, ReactNode } from "react";
+import { useRef, type ReactNode, type MouseEvent } from "react";
+import "./SpotlightCard.css";
 
 interface SpotlightCardProps {
   children: ReactNode;
@@ -12,35 +12,25 @@ interface SpotlightCardProps {
 const SpotlightCard = ({
   children,
   className = "",
-  spotlightColor = "rgba(0, 255, 153, 0.15)",
+  spotlightColor,
 }: SpotlightCardProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const divRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const rect = container.getBoundingClientRect();
+    const rect = divRef.current?.getBoundingClientRect();
+    if (!rect) return;
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    container.style.setProperty("--spotlight-x", `${x}px`);
-    container.style.setProperty("--spotlight-y", `${y}px`);
+    divRef.current?.style.setProperty("--mouse-x", `${x}px`);
+    divRef.current?.style.setProperty("--mouse-y", `${y}px`);
+    if (spotlightColor) {
+      divRef.current?.style.setProperty("--spotlight-color", spotlightColor);
+    }
   };
 
   return (
-    <div
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      className={`relative overflow-hidden ${className}`}
-      style={{
-        background: `radial-gradient(
-          400px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
-          ${spotlightColor},
-          transparent 60%
-        )`,
-      }}
-    >
+    <div ref={divRef} onMouseMove={handleMouseMove} className={`card-spotlight ${className}`}>
       {children}
     </div>
   );

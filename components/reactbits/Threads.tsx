@@ -166,7 +166,7 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     window.addEventListener('resize', resize);
     resize();
 
-    let currentMouse = [0.5, 0.5];
+    const currentMouse = [0.5, 0.5];
     let targetMouse = [0.5, 0.5];
 
     function handleMouseMove(e) {
